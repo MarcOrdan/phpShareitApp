@@ -15,7 +15,7 @@ class Bootstrap {
         }
 
         if($this->request['action'] == ""){
-            $this->action = "index";
+            $this->action = 'index';
         } else {
             $this->action = $this->request['action'];
         }
@@ -29,7 +29,7 @@ class Bootstrap {
             //check extend
             if(in_array("Controller", $parents)){
                 if(method_exists($this->controller, $this->action)){
-                    return new $this-controller($this->action, $this->request);
+                    return new $this->controller($this->action, $this->request);
                 } else {
                     //inform user that method doesn't exist
                     echo '<h1>Method does not exist</h1>';

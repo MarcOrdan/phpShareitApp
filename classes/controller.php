@@ -1,6 +1,6 @@
 <?php
 
-abstract class controller{
+abstract class Controller{
     protected $request;
     protected $action;
 
@@ -14,7 +14,7 @@ abstract class controller{
     }
 
     protected function returnView($viewModel, $fullview){
-        $view = 'view/'.get_class($this).'/'.$this->action.'php';
+        $view = 'view/'. get_class($this). '/' . $this->action. '.php';
         if($fullview){
             require('view/main.php');
         } else {
