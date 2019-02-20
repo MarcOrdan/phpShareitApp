@@ -2,12 +2,18 @@
 
 class UserModel extends Model {
     public function register(){
+
         //sanitize POST
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        
         $password = md5($post['password']);
 
         if($post['submit']){
+            //validate for blank fields
+            if($post['name'] == '' || $post['email'] == '' || $post['password'] == ''){
+            Messages::setMsg('Please fill all fields','error');
+            return;
+            }
+
             //insert into mysql
             $this->query('INSERT INTO users(name,email,password) VALUES(:name, :email, :password)');
             $this->bind(':name', $post['name']);
@@ -47,7 +53,7 @@ class UserModel extends Model {
                 //redirect
                 header('Location:'.ROOT_URL.'shares');
             } else {
-                echo 'Incorrect Login';
+                Messages::setMsg('Incorrect Login','error');
             }
         }
         return;

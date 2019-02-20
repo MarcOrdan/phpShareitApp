@@ -45,6 +45,7 @@
  </nav>
 
  <div class="jumbotron">
+        <?php Messages::display(); ?>
         <h1><?php require($view); ?></h1>
  </div>
 
